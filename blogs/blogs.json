@@ -1,0 +1,70 @@
+{
+  "provider": "litmos",
+  "url": "https://www.litmos.com/blog",
+  "fetched": "2026-06-13",
+  "posts": [
+    {
+      "title": "The Real Reason Your Learning Strategy Isn't Executing",
+      "url": "https://www.litmos.com/blog/articles/the-real-reason-your-learning-strategy-isnt-executing",
+      "date": "2026-05-14",
+      "author": "Melissa Kruminas",
+      "description": "Explores why learning programs launch late and course libraries become outdated despite having strategy, platform, and leadership support."
+    },
+    {
+      "title": "Mental Health Awareness Month 2026: Training that Turns Awareness into Action",
+      "url": "https://www.litmos.com/blog/articles/mental-health-awareness-month",
+      "date": "2026-05-01",
+      "author": "Liz Jukovsky",
+      "description": "Examines how training initiatives can transform awareness into meaningful action around mental health, aligned with the 'More Good Days Together' theme."
+    },
+    {
+      "title": "Wondering About LMS Migration Time? Ask These Scenario-Based Questions Before Committing to a Vendor",
+      "url": "https://www.litmos.com/blog/articles/migration-time-scenario-based-questions-to-ask-before-committing-to-an-lms-vendor",
+      "date": "2026-04-27",
+      "author": "Erica Light",
+      "description": "Provides critical questions organizations should ask vendors regarding migration timelines and implementation processes."
+    },
+    {
+      "title": "Leveraging Learning to Predict Business Resilience",
+      "url": "https://www.litmos.com/blog/articles/leveraging-learning-to-predict-business-resilience",
+      "date": "2026-04-23",
+      "author": "Liz Jukovsky",
+      "description": "Discusses how skill development and readiness gaps directly impact organizational resilience and strategic capability."
+    },
+    {
+      "title": "How USA Volleyball Centralizes, Streamlines, and Enhances Membership Training with Litmos",
+      "url": "https://www.litmos.com/blog/articles/how-usa-volleyball-streamlines-membership-training-with-litmos",
+      "date": "2026-04-20",
+      "author": "Kristin Simpson Lane",
+      "description": "Case study highlighting how USA Volleyball improved membership training through platform centralization."
+    },
+    {
+      "title": "The Post-Launch Playbook: How Teams with No Time Maintain Learning Momentum",
+      "url": "https://www.litmos.com/blog/articles/the-post-launch-playbook-maintain-learning-momentum",
+      "date": "2026-04-16",
+      "author": "Liz Jukovsky",
+      "description": "Strategies for sustaining training relevance and engagement beyond initial program launch phases."
+    },
+    {
+      "title": "Three Ways Customer Education Drives Measurable Business Impact",
+      "url": "https://www.litmos.com/blog/articles/three-ways-customer-education-drives-measurable-business-impact",
+      "date": "2026-04-13",
+      "author": "Melissa Kruminas",
+      "description": "Details how customer education reduces support expenses and influences retention, adoption, and expansion metrics."
+    },
+    {
+      "title": "Stop Rebuilding Training From Scratch: Create a Skills-Based Readiness Strategy That Scales",
+      "url": "https://www.litmos.com/blog/articles/skills-based-repeatable-learning-system",
+      "date": "2026-04-09",
+      "author": "Liz Jukovsky",
+      "description": "Presents frameworks for developing scalable, repeatable training strategies based on competency development."
+    },
+    {
+      "title": "Before You Choose an LMS, Ask These Seven Questions",
+      "url": "https://www.litmos.com/blog/articles/lms-evaluation-fit-guide",
+      "date": "2026-04-07",
+      "author": "Erica Light",
+      "description": "Essential evaluation criteria for L&D leaders selecting learning management system platforms."
+    }
+  ]
+}

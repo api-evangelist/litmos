@@ -1,0 +1,55 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://www.litmos.com",
+  "name": "Litmos",
+  "description": "SAP Litmos is a cloud-based learning management system (LMS) with a REST API for managing courses, learning paths, user enrollment, completions, assessments, and training compliance reporting.",
+  "url": "https://www.litmos.com",
+  "logo": "https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg",
+  "sameAs": [
+    "https://github.com/Trifoia/litmos-sdk"
+  ],
+  "offers": {
+    "@type": "Offer",
+    "name": "Litmos LMS Plans",
+    "url": "https://www.litmos.com/litmos-pricing"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Litmos API",
+    "itemListElement": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Litmos API",
+        "description": "RESTful API for the Litmos learning management system enabling management of users, teams, courses, learning paths, enrollments, assessments, and completion records.",
+        "applicationCategory": "LearningManagementSystem",
+        "url": "https://www.litmos.com/learning-management-system/api",
+        "documentation": "https://www.litmos.com/docs/litmos/apis/overview-of-developer-api",
+        "termsOfService": "https://www.litmos.com/legal/terms-of-service",
+        "featureList": [
+          "User Management",
+          "Team Management",
+          "Course Management",
+          "Learning Paths",
+          "Enrollment",
+          "Completions",
+          "Assessments",
+          "Reports",
+          "Webhooks"
+        ],
+        "softwareVersion": "v1",
+        "provider": {
+          "@type": "Organization",
+          "name": "SAP Litmos",
+          "url": "https://www.litmos.com"
+        }
+      }
+    ]
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "url": "https://support.litmos.com",
+    "contactType": "customer support"
+  },
+  "publishingPrinciples": "https://www.litmos.com/legal/privacy-policy"
+}
