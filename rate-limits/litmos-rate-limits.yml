@@ -1,0 +1,47 @@
+name: Litmos API Rate Limits
+description: The Litmos REST API enforces a rate limit of 100 requests per minute per site across all paid plans. The maximum number of records returned per single API request is 1,000. If rate limit thresholds need to be increased, organizations can contact Litmos Support. The API also supports pagination for retrieving large datasets.
+url: https://www.litmos.com/docs/litmos/apis/overview-of-developer-api
+limits:
+  - name: Requests Per Minute
+    description: Maximum number of API requests allowed per minute, per Litmos site (organization instance).
+    limit: 100
+    period: minute
+    scope: per-site
+    plans:
+      - Foundation
+      - Platinum
+      - Platinum AI
+    notes: Contact Litmos Support to request an increase for your organization if higher throughput is needed.
+  - name: Maximum Results Per Request
+    description: The maximum number of records that can be returned in a single API response. Pagination is required for larger datasets.
+    limit: 1000
+    scope: per-request
+    notes: Use pagination parameters to retrieve additional pages of results when the dataset exceeds 1,000 records.
+pagination:
+  supported: true
+  description: The Litmos API supports pagination for list endpoints. Use query parameters to control pagination behavior.
+  parameters:
+    - name: limit
+      description: Number of records to return per page. Maximum value is 1000.
+      default: 1000
+      maximum: 1000
+    - name: since
+      description: ISO 8601 date string to filter records updated or created after a specific date/time.
+      example: '2024-01-01T00:00:00Z'
+error_handling:
+  rate_limit_exceeded:
+    description: When the rate limit is exceeded, the API returns an HTTP 429 Too Many Requests response.
+    http_status: 429
+    recommended_action: Implement exponential backoff and retry logic. Contact Litmos Support if persistent rate limit errors occur during bulk import or synchronization operations.
+regional_endpoints:
+  - region: US
+    base_url: https://api.litmos.com/v1.svc
+  - region: EU
+    base_url: https://api.litmoseu.com/v1.svc
+  - region: AU
+    base_url: https://api.litmos.com.au/v1.svc
+notes:
+  - Rate limits apply per site (organization instance), not per API key or per user.
+  - The API is not available on Litmos Trial accounts.
+  - Bulk operations should be paced to stay within the 100 RPM limit to avoid disruptions.
+  - Webhooks are available as an alternative to polling for real-time event notifications, reducing API call volume.

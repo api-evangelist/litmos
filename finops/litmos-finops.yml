@@ -1,0 +1,62 @@
+name: Litmos FinOps
+description: Financial operations guidance for managing SAP Litmos API and platform costs. Litmos uses a quote-based pricing model based on active learner count, feature tier, and contract length. API usage is included in all paid plans with a fixed rate limit of 100 RPM per site, with no additional per-call usage costs.
+url: https://www.litmos.com/litmos-pricing
+cost_model:
+  type: subscription
+  billing_period: annual
+  unit: active-learner
+  description: Litmos pricing is based on the number of active learners, the selected feature tier (Foundation, Platinum, or Platinum AI), and contract length. All plans include API access at no additional cost per API call.
+  api_cost: included
+  notes: No metered API usage fees. API access (up to 100 RPM) is bundled into all paid subscription plans.
+cost_drivers:
+  - name: Active Learner Count
+    description: The primary cost driver. Pricing scales with the number of active learners in the organization. Minimum is approximately 150 learners.
+    impact: high
+  - name: Feature Tier
+    description: Foundation, Platinum, and Platinum AI tiers have different price points. AI features command a premium.
+    impact: high
+  - name: Contract Length
+    description: Annual contracts are standard. Longer multi-year commitments may unlock volume discounts.
+    impact: medium
+  - name: Add-On Services
+    description: Content Collections, Salesforce Connector, Litmos Data Subscription, professional services, and Webhooks premium service add to base costs.
+    impact: medium
+  - name: Regional Deployment
+    description: US, EU (litmoseu.com), and AU (litmos.com.au) deployments. Regional pricing may vary.
+    impact: low
+optimization_strategies:
+  - name: Monitor Active Learner Count
+    description: Actively track and manage which users are classified as "active learners" since billing is based on active user count. Deactivate users who no longer need access to reduce costs.
+    savings_potential: high
+  - name: Use Webhooks Instead of Polling
+    description: Implement webhooks for real-time event notifications to reduce API call volume and avoid approaching rate limits, which can reduce the need for rate limit increases or custom plans.
+    savings_potential: medium
+  - name: Optimize API Pagination
+    description: Use maximum page size (1000 records per request) when bulk-fetching data to minimize the number of API calls and reduce the risk of hitting rate limits during sync operations.
+    savings_potential: low
+  - name: Negotiate Annual Contract Volume Discounts
+    description: Contact the Litmos sales team for volume pricing and multi-year contract discounts. Larger learner counts typically yield lower per-learner pricing.
+    savings_potential: high
+  - name: Evaluate Add-On Necessity
+    description: Audit usage of premium add-ons (Webhooks, Content Collections, Salesforce Connector, Litmos Data Subscription) against actual utilization to avoid paying for unused services.
+    savings_potential: medium
+  - name: Select Appropriate Tier
+    description: Avoid over-provisioning to Platinum AI if AI features are not actively used. Foundation or Platinum may be sufficient for many training programs.
+    savings_potential: high
+budget_planning:
+  estimated_cost_range:
+    low: '$4 per active learner per month (Foundation, high volume)'
+    high: '$15 per active learner per month (Platinum AI, low volume)'
+    notes: All estimates are approximate. Contact Litmos Sales for an official quote based on your specific learner count and requirements.
+  minimum_commitment:
+    learners: 150
+    period: annual
+  notes:
+    - Pricing is not publicly listed and requires a sales quote.
+    - Budget for annual renewal increases; LMS vendors commonly raise prices 5-10% annually.
+    - Factor in implementation and onboarding professional services costs for initial deployment.
+    - Webhook service is a premium add-on billed separately.
+vendor_contact:
+  sales: https://www.litmos.com/contact-us
+  support: https://support.litmos.com
+  pricing_page: https://www.litmos.com/litmos-pricing

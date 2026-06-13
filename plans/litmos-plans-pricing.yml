@@ -1,0 +1,87 @@
+name: Litmos Plans and Pricing
+description: SAP Litmos offers three subscription tiers (Foundation, Platinum, and Platinum AI) with quote-based pricing depending on active learner count, feature tier, and contract length. All plans include API access at up to 100 requests per minute per site. Pricing is not publicly listed and requires contacting the Litmos sales team.
+url: https://www.litmos.com/litmos-pricing
+plans:
+  - name: Foundation
+    description: Entry-level plan designed for small companies and departments with up to 250 learners. Includes core LMS capabilities with API access.
+    url: https://www.litmos.com/litmos-pricing
+    pricing:
+      model: quote-based
+      period: annual
+      currency: USD
+      notes: Pricing not publicly listed; contact sales for a quote. Estimated $4-$6 per active learner per month billed annually with a minimum of approximately 150 learners.
+    features:
+      - SCORM and xAPI content support
+      - White-labeled design
+      - Instructor-led training (ILT) and virtual ILT (vILT)
+      - Learning paths
+      - Assessments
+      - Mobile access
+      - Single Sign-On (SSO)
+      - Reporting and dashboards
+      - REST API (up to 100 RPM per site)
+      - LTI integration
+      - Webhooks (premium add-on)
+      - Third-party integrations (ADP, Box, DocuSign)
+    limits:
+      learners: 250
+      api_requests_per_minute: 100
+  - name: Platinum
+    description: Mid-market and enterprise plan with all Foundation features plus advanced capabilities. Available with or without AI features.
+    url: https://www.litmos.com/litmos-pricing
+    pricing:
+      model: quote-based
+      period: annual
+      currency: USD
+      notes: Pricing not publicly listed; contact sales for a quote. Estimated $6-$15 per active learner per month depending on volume and contract terms.
+    features:
+      - All Foundation features
+      - Multiple branded experiences
+      - Learning Record Store (LRS)
+      - Gamification
+      - Discussion forums
+      - 360-degree immersive video
+      - Advanced analytics
+      - Salesforce Connector
+      - REST API (up to 100 RPM per site)
+      - Webhooks (premium add-on)
+    limits:
+      learners: unlimited
+      api_requests_per_minute: 100
+  - name: Platinum AI
+    description: Enterprise plan with all Platinum features plus AI-powered tools for content authoring, playlists, assessments, and learner engagement.
+    url: https://www.litmos.com/litmos-pricing
+    pricing:
+      model: quote-based
+      period: annual
+      currency: USD
+      notes: Pricing not publicly listed; contact sales for a quote.
+    features:
+      - All Platinum features
+      - AI Assistant
+      - AI Playlist
+      - AI Content Authoring
+      - AI Assessments
+      - Advanced learner engagement analytics
+      - Enterprise compliance controls
+      - REST API (up to 100 RPM per site)
+      - Webhooks (premium add-on)
+    limits:
+      learners: unlimited
+      api_requests_per_minute: 100
+add_ons:
+  - name: Content Collections
+    description: Compliance training packages and Go1 course libraries available as add-ons.
+  - name: Salesforce Connector
+    description: Deep integration with Salesforce CRM for training assignment and completion tracking.
+  - name: Litmos Data Subscription
+    description: Access to raw training data for advanced reporting and analytics.
+  - name: Webhooks
+    description: Premium webhook service for real-time event notifications.
+  - name: Professional Services
+    description: Implementation consulting and managed services packages.
+notes:
+  - API access is included in all paid plans at up to 100 requests per minute per site.
+  - The API is not available on trial accounts.
+  - Contact Litmos Sales for custom enterprise pricing and volume discounts.
+  - Annual contracts are standard; contact sales for multi-year terms.
