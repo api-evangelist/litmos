@@ -1,0 +1,979 @@
+# SAP Litmos — Conceptual GraphQL Schema
+# Source: Litmos REST API (https://support.litmos.com/hc/en-us/articles/227734407-API-documentation)
+# This schema is conceptual and maps REST resources to GraphQL types.
+
+# ---------------------------------------------------------------------------
+# Scalars
+# ---------------------------------------------------------------------------
+
+scalar DateTime
+scalar Date
+scalar JSON
+
+# ---------------------------------------------------------------------------
+# Enums
+# ---------------------------------------------------------------------------
+
+enum CourseStatus {
+  Active
+  Inactive
+  Pending
+  Archived
+}
+
+enum ModuleType {
+  Video
+  SCORM
+  PDF
+  Assessment
+  Survey
+  Presentation
+  AICC
+  xAPI
+  InstructorLed
+  ExternalContent
+  Document
+}
+
+enum QuestionType {
+  MultipleChoice
+  MultipleSelect
+  TrueFalse
+  FillInTheBlank
+  Matching
+  Ordering
+  HotSpot
+  FreeText
+}
+
+enum UserStatus {
+  Active
+  Inactive
+  Pending
+}
+
+enum ContentType {
+  Video
+  Audio
+  Document
+  Presentation
+  SCORM12
+  SCORM2004
+  xAPI
+  AICC
+  HTML
+  Survey
+  Assessment
+}
+
+enum WebhookEventType {
+  CourseCompleted
+  ModuleCompleted
+  UserCreated
+  UserUpdated
+  UserDeactivated
+  EnrollmentCreated
+  EnrollmentRemoved
+  CertificateIssued
+  AssessmentPassed
+  AssessmentFailed
+  LearningPathCompleted
+  TeamCreated
+  TeamUpdated
+}
+
+enum EnrollmentStatus {
+  Enrolled
+  InProgress
+  Completed
+  Failed
+  NotStarted
+  Overdue
+}
+
+enum SSOProvider {
+  SAML
+  OAuth2
+  OpenIDConnect
+  Internal
+}
+
+# ---------------------------------------------------------------------------
+# Pagination
+# ---------------------------------------------------------------------------
+
+input PaginationInput {
+  limit: Int
+  start: Int
+}
+
+type PageInfo {
+  total: Int!
+  limit: Int!
+  start: Int!
+  hasNextPage: Boolean!
+}
+
+# ---------------------------------------------------------------------------
+# Course Types
+# ---------------------------------------------------------------------------
+
+type Course {
+  id: ID!
+  name: String!
+  code: String
+  status: CourseStatus!
+  description: String
+  courseAccessSetting: String
+  selfEnrollment: Boolean
+  isMobileCompatible: Boolean
+  thumbnail: String
+  banner: String
+  durationMinutes: Int
+  tags: [String!]
+  customFields: [CustomField!]
+  modules: [Module!]
+  assessments: [Assessment!]
+  certificates: [CertificateDetails!]
+  created: DateTime
+  modified: DateTime
+  details: CourseDetails
+}
+
+type CourseDetails {
+  id: ID!
+  courseId: ID!
+  passingScore: Float
+  maxAttempts: Int
+  completionCriteria: String
+  allowRetake: Boolean
+  randomizeModules: Boolean
+  enforceOrder: Boolean
+  discussionEnabled: Boolean
+  certificateEnabled: Boolean
+  expirationDays: Int
+  complianceRequired: Boolean
+  prerequisites: [Course!]
+  learningObjectives: [String!]
+  language: String
+  created: DateTime
+  modified: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# Module Types
+# ---------------------------------------------------------------------------
+
+type Module {
+  id: ID!
+  courseId: ID!
+  name: String!
+  type: ModuleType!
+  description: String
+  durationMinutes: Int
+  orderIndex: Int
+  isRequired: Boolean
+  contentUrl: String
+  thumbnailUrl: String
+  file: File
+  created: DateTime
+  modified: DateTime
+  details: ModuleDetails
+}
+
+type ModuleDetails {
+  id: ID!
+  moduleId: ID!
+  completionThresholdPercent: Float
+  allowSkip: Boolean
+  trackingMethod: String
+  launchNewWindow: Boolean
+  maxAttempts: Int
+  passingScore: Float
+  created: DateTime
+  modified: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# Learning Path Types
+# ---------------------------------------------------------------------------
+
+type LearningPath {
+  id: ID!
+  name: String!
+  description: String
+  status: CourseStatus!
+  thumbnail: String
+  courses: [Course!]
+  enrollmentCount: Int
+  tags: [String!]
+  customFields: [CustomField!]
+  created: DateTime
+  modified: DateTime
+  details: LearningPathDetails
+}
+
+type LearningPathDetails {
+  id: ID!
+  learningPathId: ID!
+  enforceOrder: Boolean
+  allowSelfEnrollment: Boolean
+  completionCriteria: String
+  expirationDays: Int
+  milestones: [Milestone!]
+  prerequisites: [LearningPath!]
+  created: DateTime
+  modified: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# Assessment Types
+# ---------------------------------------------------------------------------
+
+type Assessment {
+  id: ID!
+  courseId: ID
+  moduleId: ID
+  name: String!
+  description: String
+  questions: [Question!]
+  questionCount: Int
+  timeLimit: Int
+  created: DateTime
+  modified: DateTime
+  details: AssessmentDetails
+}
+
+type AssessmentDetails {
+  id: ID!
+  assessmentId: ID!
+  passingScore: Float!
+  maxAttempts: Int
+  allowRetake: Boolean
+  shuffleQuestions: Boolean
+  shuffleAnswers: Boolean
+  showResults: Boolean
+  showCorrectAnswers: Boolean
+  immediateFeedback: Boolean
+  created: DateTime
+  modified: DateTime
+}
+
+type Question {
+  id: ID!
+  assessmentId: ID!
+  text: String!
+  type: QuestionType!
+  points: Float
+  orderIndex: Int
+  hint: String
+  feedback: String
+  answers: [Answer!]
+  created: DateTime
+  modified: DateTime
+}
+
+type Answer {
+  id: ID!
+  questionId: ID!
+  text: String!
+  isCorrect: Boolean!
+  orderIndex: Int
+  feedback: String
+}
+
+type Attempt {
+  id: ID!
+  assessmentId: ID!
+  userId: ID!
+  score: Float
+  passed: Boolean
+  startedAt: DateTime
+  completedAt: DateTime
+  durationSeconds: Int
+  attemptNumber: Int
+  details: AttemptDetails
+}
+
+type AttemptDetails {
+  id: ID!
+  attemptId: ID!
+  responses: [QuestionResponse!]
+  rawScore: Float
+  maxScore: Float
+  percentageScore: Float
+  timeSpentSeconds: Int
+  ipAddress: String
+}
+
+type QuestionResponse {
+  questionId: ID!
+  answerId: ID
+  responseText: String
+  isCorrect: Boolean
+  pointsAwarded: Float
+}
+
+# ---------------------------------------------------------------------------
+# User Types
+# ---------------------------------------------------------------------------
+
+type User {
+  id: ID!
+  userName: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+  status: UserStatus!
+  role: String
+  teamId: ID
+  managerId: ID
+  locale: String
+  timeZone: String
+  created: DateTime
+  modified: DateTime
+  lastLogin: DateTime
+  customFields: [CustomField!]
+  teams: [Team!]
+  enrollments: [Enrollment!]
+  completions: [Completion!]
+  manager: Manager
+  directReports: [DirectReport!]
+  details: UserDetails
+}
+
+type UserDetails {
+  id: ID!
+  userId: ID!
+  department: String
+  jobTitle: String
+  phoneNumber: String
+  address: String
+  city: String
+  state: String
+  country: String
+  postalCode: String
+  ssoId: String
+  externalId: String
+  bio: String
+  profileImageUrl: String
+  accessLevel: String
+  disableMessages: Boolean
+  skipFirstLogin: Boolean
+  created: DateTime
+  modified: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# Team Types
+# ---------------------------------------------------------------------------
+
+type Team {
+  id: ID!
+  name: String!
+  description: String
+  parentTeamId: ID
+  memberCount: Int
+  members: [TeamMember!]
+  managers: [Manager!]
+  parentTeam: Team
+  childTeams: [Team!]
+  created: DateTime
+  modified: DateTime
+  details: TeamDetails
+}
+
+type TeamDetails {
+  id: ID!
+  teamId: ID!
+  allowSelfEnrollment: Boolean
+  inheritEnrollments: Boolean
+  complianceRequired: Boolean
+  customFields: [CustomField!]
+  created: DateTime
+  modified: DateTime
+}
+
+type TeamMember {
+  id: ID!
+  teamId: ID!
+  userId: ID!
+  user: User
+  role: String
+  addedAt: DateTime
+}
+
+type Manager {
+  id: ID!
+  userId: ID!
+  user: User
+  teamId: ID
+  team: Team
+  canViewReports: Boolean
+  canEnrollUsers: Boolean
+  assignedAt: DateTime
+}
+
+type DirectReport {
+  id: ID!
+  userId: ID!
+  user: User
+  managerId: ID!
+  assignedAt: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# Group Types
+# ---------------------------------------------------------------------------
+
+type Group {
+  id: ID!
+  name: String!
+  description: String
+  memberCount: Int
+  members: [User!]
+  created: DateTime
+  modified: DateTime
+  details: GroupDetails
+}
+
+type GroupDetails {
+  id: ID!
+  groupId: ID!
+  isDynamic: Boolean
+  membershipCriteria: JSON
+  autoEnrollCourseIds: [ID!]
+  created: DateTime
+  modified: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# Enrollment Types
+# ---------------------------------------------------------------------------
+
+type Enrollment {
+  id: ID!
+  userId: ID!
+  courseId: ID
+  learningPathId: ID
+  status: EnrollmentStatus!
+  enrolledAt: DateTime
+  dueDate: Date
+  completedAt: DateTime
+  user: User
+  course: Course
+  learningPath: LearningPath
+  progress: Progress
+  details: EnrollmentDetails
+}
+
+type EnrollmentDetails {
+  id: ID!
+  enrollmentId: ID!
+  enrolledBy: String
+  source: String
+  allowReEnrollment: Boolean
+  expirationDate: Date
+  notificationsSent: [String!]
+  created: DateTime
+  modified: DateTime
+}
+
+type Assignment {
+  id: ID!
+  courseId: ID
+  learningPathId: ID
+  assignedTo: String
+  assignedToId: ID!
+  dueDate: Date
+  note: String
+  course: Course
+  learningPath: LearningPath
+  assignedAt: DateTime
+  assignedBy: ID
+}
+
+# ---------------------------------------------------------------------------
+# Progress Types
+# ---------------------------------------------------------------------------
+
+type Progress {
+  id: ID!
+  userId: ID!
+  courseId: ID!
+  percentComplete: Float!
+  modulesCompleted: Int
+  modulesTotal: Int
+  lastAccessedAt: DateTime
+  timeSpentMinutes: Int
+  details: ProgressDetails
+}
+
+type ProgressDetails {
+  id: ID!
+  progressId: ID!
+  moduleProgress: [ModuleProgress!]
+  updated: DateTime
+}
+
+type ModuleProgress {
+  moduleId: ID!
+  module: Module
+  percentComplete: Float!
+  completedAt: DateTime
+  timeSpentMinutes: Int
+  attempts: Int
+}
+
+type Milestone {
+  id: ID!
+  learningPathId: ID!
+  name: String!
+  description: String
+  courseIds: [ID!]
+  orderIndex: Int
+  badgeUrl: String
+  created: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# Completion Types
+# ---------------------------------------------------------------------------
+
+type Completion {
+  id: ID!
+  userId: ID!
+  courseId: ID!
+  completedAt: DateTime!
+  passed: Boolean
+  score: Float
+  user: User
+  course: Course
+  certificate: Certificate
+  details: CompletionDetails
+}
+
+type CompletionDetails {
+  id: ID!
+  completionId: ID!
+  timeSpentMinutes: Int
+  attemptCount: Int
+  firstAttemptScore: Float
+  bestScore: Float
+  lastScore: Float
+  gradeLabel: String
+  created: DateTime
+}
+
+type Result {
+  id: ID!
+  userId: ID!
+  courseId: ID
+  assessmentId: ID
+  score: Float
+  passed: Boolean
+  completedAt: DateTime
+  user: User
+  course: Course
+  assessment: Assessment
+  details: ResultDetails
+}
+
+type ResultDetails {
+  id: ID!
+  resultId: ID!
+  rawScore: Float
+  maxScore: Float
+  percentageScore: Float
+  attemptCount: Int
+  timeSpentSeconds: Int
+  created: DateTime
+}
+
+type Certificate {
+  id: ID!
+  userId: ID!
+  courseId: ID!
+  issuedAt: DateTime!
+  expiresAt: DateTime
+  certificateUrl: String
+  user: User
+  course: Course
+  details: CertificateDetails
+}
+
+type CertificateDetails {
+  id: ID!
+  certificateId: ID!
+  templateId: ID
+  serialNumber: String
+  revokedAt: DateTime
+  revokeReason: String
+  reissuedFrom: ID
+  created: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# File and Content Types
+# ---------------------------------------------------------------------------
+
+type File {
+  id: ID!
+  name: String!
+  originalFileName: String
+  contentType: ContentType
+  mimeType: String
+  sizeBytes: Int
+  url: String!
+  uploadedAt: DateTime
+  uploadedBy: ID
+}
+
+# ---------------------------------------------------------------------------
+# Reporting Types
+# ---------------------------------------------------------------------------
+
+type Reporting {
+  id: ID!
+  name: String!
+  type: String!
+  description: String
+  filters: JSON
+  columns: [String!]
+  created: DateTime
+  modified: DateTime
+  details: ReportDetails
+}
+
+type ReportDetails {
+  id: ID!
+  reportId: ID!
+  rowCount: Int
+  generatedAt: DateTime
+  data: JSON
+  pageInfo: PageInfo
+}
+
+type CustomField {
+  id: ID!
+  key: String!
+  value: String
+  label: String
+  fieldType: String
+  isRequired: Boolean
+}
+
+# ---------------------------------------------------------------------------
+# Authentication and Integration Types
+# ---------------------------------------------------------------------------
+
+type APIKey {
+  id: ID!
+  key: String!
+  accountId: ID!
+  label: String
+  createdAt: DateTime
+  lastUsedAt: DateTime
+  isActive: Boolean
+}
+
+type Token {
+  accessToken: String!
+  tokenType: String!
+  expiresIn: Int
+  refreshToken: String
+  scope: String
+  issuedAt: DateTime
+}
+
+type Webhook {
+  id: ID!
+  url: String!
+  secret: String
+  events: [WebhookEventType!]!
+  isActive: Boolean!
+  createdAt: DateTime
+  lastTriggeredAt: DateTime
+}
+
+type WebhookEvent {
+  id: ID!
+  webhookId: ID!
+  eventType: WebhookEventType!
+  payload: JSON!
+  deliveredAt: DateTime
+  statusCode: Int
+  success: Boolean
+}
+
+type SSO {
+  id: ID!
+  accountId: ID!
+  provider: SSOProvider!
+  isEnabled: Boolean!
+  config: JSON
+  saml: SAML
+  oauth: OAuth
+  created: DateTime
+  modified: DateTime
+}
+
+type SAML {
+  id: ID!
+  ssoId: ID!
+  entityId: String!
+  ssoUrl: String!
+  sloUrl: String
+  certificate: String!
+  nameIdFormat: String
+  signRequests: Boolean
+  encryptAssertions: Boolean
+  attributeMapping: JSON
+}
+
+type OAuth {
+  id: ID!
+  ssoId: ID!
+  clientId: String!
+  authorizationUrl: String!
+  tokenUrl: String!
+  userInfoUrl: String
+  scopes: [String!]
+  details: OAuthDetails
+}
+
+type OAuthDetails {
+  id: ID!
+  oauthId: ID!
+  responseType: String
+  grantType: String
+  pkceEnabled: Boolean
+  additionalParams: JSON
+  created: DateTime
+  modified: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# Connection / List Types
+# ---------------------------------------------------------------------------
+
+type CourseConnection {
+  nodes: [Course!]!
+  pageInfo: PageInfo!
+}
+
+type UserConnection {
+  nodes: [User!]!
+  pageInfo: PageInfo!
+}
+
+type TeamConnection {
+  nodes: [Team!]!
+  pageInfo: PageInfo!
+}
+
+type EnrollmentConnection {
+  nodes: [Enrollment!]!
+  pageInfo: PageInfo!
+}
+
+type CompletionConnection {
+  nodes: [Completion!]!
+  pageInfo: PageInfo!
+}
+
+type LearningPathConnection {
+  nodes: [LearningPath!]!
+  pageInfo: PageInfo!
+}
+
+type AssessmentConnection {
+  nodes: [Assessment!]!
+  pageInfo: PageInfo!
+}
+
+# ---------------------------------------------------------------------------
+# Input Types
+# ---------------------------------------------------------------------------
+
+input CreateUserInput {
+  userName: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+  password: String
+  role: String
+  teamId: ID
+  locale: String
+  timeZone: String
+  customFields: [CustomFieldInput!]
+}
+
+input UpdateUserInput {
+  firstName: String
+  lastName: String
+  email: String
+  status: UserStatus
+  role: String
+  teamId: ID
+  locale: String
+  timeZone: String
+  customFields: [CustomFieldInput!]
+}
+
+input CreateTeamInput {
+  name: String!
+  description: String
+  parentTeamId: ID
+}
+
+input EnrollUserInput {
+  userId: ID!
+  courseId: ID
+  learningPathId: ID
+  dueDate: Date
+  source: String
+}
+
+input CustomFieldInput {
+  key: String!
+  value: String!
+}
+
+input RegisterWebhookInput {
+  url: String!
+  secret: String
+  events: [WebhookEventType!]!
+}
+
+input CourseFilterInput {
+  status: CourseStatus
+  tags: [String!]
+  search: String
+}
+
+input UserFilterInput {
+  status: UserStatus
+  teamId: ID
+  search: String
+  role: String
+}
+
+input EnrollmentFilterInput {
+  userId: ID
+  courseId: ID
+  learningPathId: ID
+  status: EnrollmentStatus
+  dueBefore: Date
+  dueAfter: Date
+}
+
+input CompletionFilterInput {
+  userId: ID
+  courseId: ID
+  completedAfter: DateTime
+  completedBefore: DateTime
+  passed: Boolean
+}
+
+# ---------------------------------------------------------------------------
+# Root Types
+# ---------------------------------------------------------------------------
+
+type Query {
+  # Courses
+  courses(filter: CourseFilterInput, pagination: PaginationInput): CourseConnection!
+  course(id: ID!): Course
+
+  # Learning Paths
+  learningPaths(pagination: PaginationInput): LearningPathConnection!
+  learningPath(id: ID!): LearningPath
+
+  # Modules
+  modules(courseId: ID!): [Module!]!
+  module(id: ID!): Module
+
+  # Assessments
+  assessments(courseId: ID, pagination: PaginationInput): AssessmentConnection!
+  assessment(id: ID!): Assessment
+
+  # Users
+  users(filter: UserFilterInput, pagination: PaginationInput): UserConnection!
+  user(id: ID!): User
+
+  # Teams
+  teams(pagination: PaginationInput): TeamConnection!
+  team(id: ID!): Team
+  teamMembers(teamId: ID!, pagination: PaginationInput): [TeamMember!]!
+
+  # Groups
+  groups(pagination: PaginationInput): [Group!]!
+  group(id: ID!): Group
+
+  # Enrollments
+  enrollments(filter: EnrollmentFilterInput, pagination: PaginationInput): EnrollmentConnection!
+  enrollment(id: ID!): Enrollment
+
+  # Progress
+  progress(userId: ID!, courseId: ID!): Progress
+
+  # Completions
+  completions(filter: CompletionFilterInput, pagination: PaginationInput): CompletionConnection!
+  completion(id: ID!): Completion
+
+  # Results
+  results(userId: ID, courseId: ID, assessmentId: ID, pagination: PaginationInput): [Result!]!
+  result(id: ID!): Result
+
+  # Certificates
+  certificates(userId: ID, courseId: ID, pagination: PaginationInput): [Certificate!]!
+  certificate(id: ID!): Certificate
+
+  # Attempts
+  attempts(userId: ID!, assessmentId: ID!, pagination: PaginationInput): [Attempt!]!
+  attempt(id: ID!): Attempt
+
+  # Reporting
+  reports(pagination: PaginationInput): [Reporting!]!
+  report(id: ID!): Reporting
+  runReport(id: ID!, filters: JSON, pagination: PaginationInput): ReportDetails!
+
+  # SSO / Auth
+  ssoConfig: SSO
+  webhooks: [Webhook!]!
+  webhook(id: ID!): Webhook
+  apiKeys: [APIKey!]!
+}
+
+type Mutation {
+  # Users
+  createUser(input: CreateUserInput!): User!
+  updateUser(id: ID!, input: UpdateUserInput!): User!
+  deactivateUser(id: ID!): User!
+  activateUser(id: ID!): User!
+  deleteUser(id: ID!): Boolean!
+
+  # Teams
+  createTeam(input: CreateTeamInput!): Team!
+  updateTeam(id: ID!, name: String, description: String): Team!
+  deleteTeam(id: ID!): Boolean!
+  addTeamMember(teamId: ID!, userId: ID!, role: String): TeamMember!
+  removeTeamMember(teamId: ID!, userId: ID!): Boolean!
+  assignManager(teamId: ID!, userId: ID!): Manager!
+  removeManager(teamId: ID!, userId: ID!): Boolean!
+
+  # Enrollment
+  enrollUser(input: EnrollUserInput!): Enrollment!
+  unenrollUser(enrollmentId: ID!): Boolean!
+  assignCourseToTeam(teamId: ID!, courseId: ID!, dueDate: Date): [Enrollment!]!
+  assignLearningPathToTeam(teamId: ID!, learningPathId: ID!, dueDate: Date): [Enrollment!]!
+
+  # Webhooks
+  registerWebhook(input: RegisterWebhookInput!): Webhook!
+  updateWebhook(id: ID!, url: String, events: [WebhookEventType!], isActive: Boolean): Webhook!
+  deleteWebhook(id: ID!): Boolean!
+
+  # API Keys
+  createAPIKey(label: String): APIKey!
+  revokeAPIKey(id: ID!): Boolean!
+}

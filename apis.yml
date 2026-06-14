@@ -1,6 +1,10 @@
 aid: litmos
 name: Litmos
-description: SAP Litmos is a cloud-based learning management system (LMS) with a REST API for managing courses, learning paths, user enrollment, completions, assessments, and training compliance reporting. The API enables organizations to automate user provisioning, synchronize training data with HR and CRM systems, manage teams, and retrieve completion records for compliance workflows.
+description: SAP Litmos is a cloud-based learning management system (LMS) with a REST
+  API for managing courses, learning paths, user enrollment, completions, assessments,
+  and training compliance reporting. The API enables organizations to automate user
+  provisioning, synchronize training data with HR and CRM systems, manage teams, and
+  retrieve completion records for compliance workflows.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/litmos/refs/heads/main/apis.yml
@@ -8,68 +12,73 @@ created: '2026-06-13'
 modified: '2026-06-13'
 specificationVersion: '0.19'
 tags:
-  - Learning Management System
-  - LMS
-  - E-Learning
-  - Training
-  - SAP
-  - Course Management
-  - User Enrollment
-  - Compliance
-  - Assessments
+- Learning Management System
+- LMS
+- E-Learning
+- Training
+- SAP
+- Course Management
+- User Enrollment
+- Compliance
+- Assessments
 apis:
-  - aid: litmos:litmos-api
-    name: Litmos API
-    description: RESTful API for the Litmos learning management system enabling management of users, teams, courses, learning paths, enrollments, assessments, and completion records. Supports JSON and XML data formats with API key authentication passed as a request header.
-    humanURL: https://www.litmos.com/learning-management-system/api
-    baseURL: https://api.litmos.com/v1.svc
-    tags:
-      - Users
-      - Teams
-      - Courses
-      - Learning Paths
-      - Enrollment
-      - Completions
-      - Assessments
-      - Reports
-    properties:
-      - type: Documentation
-        url: https://www.litmos.com/docs/litmos/apis/overview-of-developer-api
-      - type: TermsOfService
-        url: https://www.litmos.com/legal/terms-of-service
-      - type: PrivacyPolicy
-        url: https://www.litmos.com/legal/privacy-policy
-      - type: Webhooks
-        url: https://www.litmos.com/docs/litmos/webhooks
-      - type: ReleaseNotes
-        url: https://www.litmos.com/release-notes/tags/api
-common:
+- aid: litmos:litmos-api
+  name: Litmos API
+  description: RESTful API for the Litmos learning management system enabling management
+    of users, teams, courses, learning paths, enrollments, assessments, and completion
+    records. Supports JSON and XML data formats with API key authentication passed
+    as a request header.
+  humanURL: https://www.litmos.com/learning-management-system/api
+  baseURL: https://api.litmos.com/v1.svc
+  tags:
+  - Users
+  - Teams
+  - Courses
+  - Learning Paths
+  - Enrollment
+  - Completions
+  - Assessments
+  - Reports
+  properties:
   - type: Documentation
     url: https://www.litmos.com/docs/litmos/apis/overview-of-developer-api
-  - type: SignUp
-    url: https://www.litmos.com/free-trial
-  - type: Login
-    url: https://www.litmos.com/login
-  - type: Blog
-    url: https://www.litmos.com/blog
-  - type: Support
-    url: https://support.litmos.com
-  - type: Pricing
-    url: https://www.litmos.com/litmos-pricing
+  - type: TermsOfService
+    url: https://www.litmos.com/legal/terms-of-service
+  - type: PrivacyPolicy
+    url: https://www.litmos.com/legal/privacy-policy
   - type: Webhooks
     url: https://www.litmos.com/docs/litmos/webhooks
   - type: ReleaseNotes
     url: https://www.litmos.com/release-notes/tags/api
-  - type: Integrations
-    url: https://www.litmos.com/features/integrations
-  - type: GitHubOrganization
-    url: https://github.com/Trifoia/litmos-sdk
-  - type: Plans
-    url: plans/litmos-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/litmos-rate-limits.yml
-  - type: FinOps
-    url: finops/litmos-finops.yml
+  - url: graphql/litmos-graphql.md
+    type: GraphQL
+common:
+- type: Documentation
+  url: https://www.litmos.com/docs/litmos/apis/overview-of-developer-api
+- type: SignUp
+  url: https://www.litmos.com/free-trial
+- type: Login
+  url: https://www.litmos.com/login
+- type: Blog
+  url: https://www.litmos.com/blog
+- type: Support
+  url: https://support.litmos.com
+- type: Pricing
+  url: https://www.litmos.com/litmos-pricing
+- type: Webhooks
+  url: https://www.litmos.com/docs/litmos/webhooks
+- type: ReleaseNotes
+  url: https://www.litmos.com/release-notes/tags/api
+- type: Integrations
+  url: https://www.litmos.com/features/integrations
+- type: GitHubOrganization
+  url: https://github.com/Trifoia/litmos-sdk
+- type: Plans
+  url: plans/litmos-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/litmos-rate-limits.yml
+- type: FinOps
+  url: finops/litmos-finops.yml
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
