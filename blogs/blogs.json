@@ -1,7 +1,7 @@
 {
   "provider": "litmos",
   "url": "https://www.litmos.com/blog",
-  "fetched": "2026-06-13",
+  "fetched": "2026-06-14T20:42:17Z",
   "posts": [
     {
       "title": "The Real Reason Your Learning Strategy Isn't Executing",
@@ -66,5 +66,13 @@
       "author": "Erica Light",
       "description": "Essential evaluation criteria for L&D leaders selecting learning management system platforms."
     }
-  ]
+  ],
+  "repo": "litmos",
+  "feeds": [
+    {
+      "source": "https://www.litmos.com/login",
+      "error": "HTTPError"
+    }
+  ],
+  "post_count": 0
 }
