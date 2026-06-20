@@ -5,7 +5,7 @@
   "name": "Litmos",
   "description": "SAP Litmos is a cloud-based learning management system (LMS) with a REST API for managing courses, learning paths, user enrollment, completions, assessments, and training compliance reporting.",
   "url": "https://www.litmos.com",
-  "logo": "https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg",
+  "logo": "https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg",
   "sameAs": [
     "https://github.com/Trifoia/litmos-sdk"
   ],
