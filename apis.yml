@@ -55,7 +55,7 @@ apis:
 common:
 - type: Documentation
   url: https://www.litmos.com/docs/litmos/apis/overview-of-developer-api
-- type: SignUp
+- type: Signup
   url: https://www.litmos.com/free-trial
 - type: Login
   url: https://www.litmos.com/login
