@@ -53,6 +53,8 @@ apis:
   - url: graphql/litmos-graphql.md
     type: GraphQL
 common:
+- type: DomainSecurity
+  url: security/litmos-domain-security.yml
 - type: Documentation
   url: https://www.litmos.com/docs/litmos/apis/overview-of-developer-api
 - type: Signup
