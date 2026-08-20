@@ -43,6 +43,15 @@ apis:
   humanURL: https://www.litmos.com/learning-management-system/api
   baseURL: https://api.litmos.com/v1.svc
   tags:
+  - User
+  - Team
+  - Courses
+  - Learning Paths
+  - Enrollment
+  - Completions
+  - Assessments
+  - Reports
+  tags_raw:
   - Users
   - Teams
   - Courses
