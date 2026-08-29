@@ -6,6 +6,17 @@ description: SAP Litmos is a cloud-based learning management system (LMS) with a
   provisioning, synchronize training data with HR and CRM systems, manage teams, and
   retrieve completion records for compliance workflows.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: approval
