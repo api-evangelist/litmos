@@ -85,6 +85,8 @@ apis:
   - url: graphql/litmos-graphql.md
     type: GraphQL
 common:
+- type: Website
+  url: https://www.litmos.com/
 - type: DomainSecurity
   url: security/litmos-domain-security.yml
 - type: Documentation
