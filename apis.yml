@@ -43,6 +43,16 @@ tags:
 - Course Management
 - User Enrollment
 - Compliance
+- Assessment
+tags_raw:
+- Learning Management System
+- LMS
+- E-Learning
+- Training
+- SAP
+- Course Management
+- User Enrollment
+- Compliance
 - Assessments
 apis:
 - aid: litmos:litmos-api
@@ -60,7 +70,7 @@ apis:
   - Learning Paths
   - Enrollment
   - Completions
-  - Assessments
+  - Assessment
   - Reports
   tags_raw:
   - Users
