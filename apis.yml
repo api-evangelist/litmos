@@ -92,8 +92,6 @@ apis:
     url: https://www.litmos.com/docs/litmos/webhooks
   - type: ReleaseNotes
     url: https://www.litmos.com/release-notes/tags/api
-  - url: graphql/litmos-graphql.md
-    type: GraphQL
 common:
 - type: Website
   url: https://www.litmos.com/
