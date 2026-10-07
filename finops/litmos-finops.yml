@@ -1,3 +1,11 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+# Coverage demoted 2026-10-07 (roadmap#942, PLAN.md Stage A): this file was written by an API Evangelist
+# sweep and names no billing unit, meters or pricing category read from the provider — it restates the
+# FinOps framework. It is `x-coverage: unmeasured`, and the FOCUS alignment it claimed has been removed.
+x-coverage: unmeasured
+method: generated
 name: Litmos FinOps
 description: Financial operations guidance for managing SAP Litmos API and platform costs. Litmos uses a quote-based pricing model based on active learner count, feature tier, and contract length. API usage is included in all paid plans with a fixed rate limit of 100 RPM per site, with no additional per-call usage costs.
 url: https://www.litmos.com/litmos-pricing

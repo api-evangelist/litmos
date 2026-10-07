@@ -1,3 +1,7 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
 name: Litmos API Rate Limits
 description: The Litmos REST API enforces a rate limit of 100 requests per minute per site across all paid plans. The maximum number of records returned per single API request is 1,000. If rate limit thresholds need to be increased, organizations can contact Litmos Support. The API also supports pagination for retrieving large datasets.
 url: https://www.litmos.com/docs/litmos/apis/overview-of-developer-api
