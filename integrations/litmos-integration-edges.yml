@@ -2,6 +2,7 @@ generated: '2026-10-14'
 method: searched
 checked:
 - adp/integrations/adp-integration-edges.yml
+- zoom/integrations/zoom-integration-edges.yml
 source:
 - adp/integrations/adp-integration-edges.yml
 edges:
@@ -22,3 +23,20 @@ edges:
   detected: '2026-10-14'
   detected_by: mirror-platform-listings.py
   category: EeT
+- partner_name: Zoom (own)
+  partner: zoom
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.zoom.us/apps/GlJ09jB_R5yQwRneh8sb8A
+  mirror_of: zoom/integrations/zoom-integration-edges.yml
+  apps:
+  - Litmos
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Zoom app
