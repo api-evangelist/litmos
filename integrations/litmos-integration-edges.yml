@@ -2,6 +2,7 @@ generated: '2026-10-14'
 method: searched
 checked:
 - adp/integrations/adp-integration-edges.yml
+- zendesk/integrations/zendesk-integration-edges.yml
 - zoom/integrations/zoom-integration-edges.yml
 source:
 - adp/integrations/adp-integration-edges.yml
@@ -23,6 +24,23 @@ edges:
   detected: '2026-10-14'
   detected_by: mirror-platform-listings.py
   category: EeT
+- partner_name: Zendesk (own)
+  partner: zendesk
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.zendesk.com/marketplace/apps/support/56524/sap-litmos/
+  mirror_of: zendesk/integrations/zendesk-integration-edges.yml
+  apps:
+  - SAP Litmos
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: Knowledge and Content Management
 - partner_name: Zoom (own)
   partner: zoom
   partner_match: mirror
