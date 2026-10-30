@@ -66,50 +66,110 @@
 
 SAP Litmos is a cloud-based learning management system (LMS) with a REST API for managing courses, learning paths, user enrollment, completions, assessments, and training compliance reporting. The API enables organizations to automate user provisioning, synchronize training data with HR and CRM systems, manage teams, and retrieve completion records for compliance workflows.
 
-## API Overview
+**Areas:** LMS · E-Learning · Training · SAP · Course Management · User Enrollment · Compliance · Assessment
 
-The Litmos REST API is available at `https://api.litmos.com/v1.svc` (US), `https://api.litmoseu.com/v1.svc` (EU), and `https://api.litmos.com.au/v1.svc` (AU). All requests must be made over HTTPS and authenticated using an API key passed as a request header. Both JSON and XML data formats are supported.
+## Litmos on APIs.io
 
-## Key Resources
+Everything profiled for Litmos is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/litmos/](https://apis.io/providers/litmos/)** — or go straight to one of the APIs or properties below.
 
-- **Users** - Create, update, delete, and retrieve user accounts; manage active/inactive status
-- **Teams** - Organize users into teams; manage team membership and leadership
-- **Courses** - Retrieve course listings and assign courses to teams and users
-- **Learning Paths** - Manage learning path assignments and track user progress
-- **Enrollments** - Enroll users in courses and learning paths
-- **Completions** - Retrieve course and module completion records for compliance reporting
-- **Assessments** - Access assessment results and scores
-- **Reports** - Pull training compliance and activity reports
+### APIs (1)
 
-## Authentication
+- [Litmos API](https://apis.io/apis/litmos/litmos-api/) — RESTful API for the Litmos learning management system enabling management of users, teams, courses, learning paths, enrollments, assessments, and completion…
 
-Every request must include an API key as a header parameter. Access to the API is limited to Litmos Account Owners. The API is not available on Trial accounts.
+### Published properties
 
-```
-apikey: YOUR_API_KEY
-```
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Rate Limits
+#### GraphQL (1)
 
-- 100 requests per minute per site (all paid plans)
-- Maximum 1,000 records returned per single request
-- Pagination supported for large datasets
+GraphQL schemas.
 
-## Pricing
+- [Moved to /providers/litmos/](https://apis.io/graphqls/litmos/litmos-graphql/)
 
-Litmos offers three tiers: **Foundation**, **Platinum**, and **Platinum AI**. All plans include API access. Pricing is quote-based and depends on active learner count, feature tier, and contract length. Estimated range: $4-$15 per active learner per month (annual contract).
+#### Security (1)
 
-## Webhooks
+Authentication, trust centre, and vulnerability disclosure.
 
-The Litmos Webhooks feature (premium add-on) delivers real-time POST notifications to your endpoint when subscribed events occur in the LMS, eliminating the need for continuous API polling.
+- [Litmos Domain Security](https://apis.io/security/litmos/litmos-domain-security/)
 
-## Links
+#### Plans and pricing (1)
 
-- [API Documentation](https://www.litmos.com/docs/litmos/apis/overview-of-developer-api)
+Published plans, tiers and prices.
+
+- [Litmos Plans Pricing](https://apis.io/plans/litmos/litmos-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Litmos Rate Limits](https://apis.io/rate-limits/litmos/litmos-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Litmos Finops](https://apis.io/finops/litmos/litmos-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.litmos.com/)
+- [Documentation](https://www.litmos.com/docs/litmos/apis/overview-of-developer-api)
 - [Pricing](https://www.litmos.com/litmos-pricing)
-- [Webhooks](https://www.litmos.com/docs/litmos/webhooks)
-- [Integrations](https://www.litmos.com/features/integrations)
 - [Support](https://support.litmos.com)
-- [Release Notes](https://www.litmos.com/release-notes/tags/api)
-- [Node.js SDK (community)](https://github.com/Trifoia/litmos-sdk)
-- [Python SDK (community)](https://python-litmos-api.readthedocs.io/en/latest/readme.html)
+- [Blog](https://www.litmos.com/blog)
+- [GitHub](https://github.com/Trifoia/litmos-sdk)
+
+## API Evangelist rating
+
+**Kin Score 15.7** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 0.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 23.7 |
+| Developer ergonomics | 14.3 |
+| Access clarity | 25.0 |
+
+**Agent readiness 4.5** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | unknown |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 5.9** — Education & Research
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/litmos/](https://apis.io/providers/litmos/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Litmos: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/litmos/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
